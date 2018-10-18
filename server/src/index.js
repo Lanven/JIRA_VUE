@@ -13,7 +13,7 @@ const app = express()
 app.use(morgan('combined'))
 app.use(bodyParser.json())
 app.use(cors())
-app.use('/posts', require('./routes/posts'))
+app.use('/tasks', require('./routes/tasks'))
 
 mongoose.connect(config.dbURL, config.dbOptions)
 

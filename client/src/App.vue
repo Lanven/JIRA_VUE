@@ -12,4 +12,5 @@ export default {
 </script>
 
 <style src="../app.css"></style>
+<style src="../node_modules/bootstrap/dist/css/bootstrap.css"></style>
 
