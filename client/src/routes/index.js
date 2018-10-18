@@ -1,5 +1,5 @@
 import Start from '@/components/pages/StartPage'
-import Posts from '@/components/pages/PostsPage'
+import Tasks from '@/components/pages/TasksPage'
 
 const routes = [
   {
@@ -8,9 +8,9 @@ const routes = [
     component: Start
   },
   {
-    path: '/posts',
-    name: 'Posts',
-    component: Posts
+    path: '/tasks',
+    name: 'Tasks',
+    component: Tasks
   }
 ]
 
