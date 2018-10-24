@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <div class="row">
-      <div class="col-xs-6">
+      <div class="col-xs-offset-2 col-xs-6">
         <h1>tasks</h1>
         <h3>This file will list all the tasks</h3>
         <section class="panel panel-success" v-if="tasks && tasks.length">
@@ -38,39 +38,42 @@
     </div>
 
     <div class="row">
-      <div class="col-xs-6">
+      <div class="col-6">
         <h1>Add new post</h1>
         <div class="row">
-          <div class="col-xs-12">
+          <div class="col-12">
             <label>Fix version</label>
             <input type="text" v-model="task.release">
           </div>
-          <div class="col-xs-12">
+          <div class="col-12">
             <label>Component</label>
-            <input type="text" v-model="task.component">
+            <select>
+              <option value=""></option>
+              <option v-for="item in components" value="item.code">{{item.name}}</option>
+            </select>
           </div>
-          <div class="col-xs-12">
+          <div class="col-12">
             <label>Link</label>
             <input type="text" v-model="task.link">
           </div>
-          <div class="col-xs-12">
+          <div class="col-12">
             <label>Description</label>
             <input type="text" v-model="task.description">
           </div>
-          <div class="col-xs-12">
+          <div class="col-12">
             <label>Comment</label>
             <input type="text" v-model="task.comment">
           </div>
-          <div class="col-xs-12">
+          <div class="col-12">
             <label>Priority</label>
             <input type="text" v-model="task.priority">
           </div>
-          <div class="col-xs-12">
+          <div class="col-12">
             <label>Status</label>
             <input type="text" v-model="task.status">
           </div>
         </div>
-        <div class="col-xs-12">
+        <div class="col-12">
           <button v-on:click="addTask()">Add task</button>
         </div>
       </div>
@@ -94,7 +97,8 @@
           comment: '',
           priority: '',
           status: ''
-        }
+        },
+        components: []
       }
     },
     methods: {
@@ -116,15 +120,20 @@
   },
   async getTasks () {
     const response = await TasksService.fetchTasks()
-    this.tasks = response.data.tasks
+    this.tasks = response.data.tasks;
   },
   async removeTask (value) {
     await TasksService.deleteTask({ id: value })
-    this.getTasks()
+    this.getTasks();
+  },
+  async getComponents () {
+    const response = await TasksService.fetchComponents();
+    this.components = response.data.components;
   }
   },
   mounted () {
-    this.getTasks()
+    this.getTasks();
+    this.getComponents();
   }
   }
 </script>

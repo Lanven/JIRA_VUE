@@ -9,5 +9,8 @@ export default {
   },
   deleteTask (params) {
     return api().delete(`tasks/${params.id}`)
+  },
+  fetchComponents () {
+    return api().get('components')
   }
 }

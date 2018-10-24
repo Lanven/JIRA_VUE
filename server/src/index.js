@@ -14,6 +14,7 @@ app.use(morgan('combined'))
 app.use(bodyParser.json())
 app.use(cors())
 app.use('/tasks', require('./routes/tasks'))
+app.use('/components', require('./routes/components'))
 
 mongoose.connect(config.dbURL, config.dbOptions)
 
